@@ -1,8 +1,9 @@
 package messages.imple;
 
+
 import messages.interf.Command;
 
-public class SimpleCommand extends Command {
+public class SimpleRequest extends Command {
 
     private String text;
     private Object object;

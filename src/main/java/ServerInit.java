@@ -1,7 +1,10 @@
 import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import messages.imple.SimpleCommand;
-import messages.interf.Command;
+import handlers.MessageReader;
+import handlers.MessageWriter;
+import messages.imple.SimpleRequest;
+import messages.imple.SimpleResponse;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -10,6 +13,7 @@ import java.util.ResourceBundle;
 
 public class ServerInit extends Thread {
 
+    private final Kryo kryo = new Kryo();
     private final ResourceBundle rb = ResourceBundle.getBundle("config"); // prop.properties
     private int port;
 
@@ -21,11 +25,12 @@ public class ServerInit extends Thread {
 
     @Override
     public void run() {
+        kryo.register(SimpleResponse.class);
+        kryo.register(SimpleRequest.class);
         ServerSocket listener = null;
         BufferedReader is;
         ObjectOutputStream oos;
         Socket socketOfServer = null;
-
         // Try to open a server socket on port 7071
 
 
@@ -43,20 +48,8 @@ public class ServerInit extends Thread {
             socketOfServer = listener.accept();
             System.out.println("Accept a client!");
 
-            // Open input and output streams
-            is = new BufferedReader(new InputStreamReader(socketOfServer.getInputStream()));
-            oos = new ObjectOutputStream(socketOfServer.getOutputStream());
-
-            Kryo kryo = new Kryo();
-            kryo.register(SimpleCommand.class);
-            kryo.register(Command.class);
-
-            SimpleCommand simpleCommand = new SimpleCommand();
-            simpleCommand.setText("Hello");
-
-            Output output = new Output(oos);
-            kryo.writeObject(output, simpleCommand);
-            output.close();
+            MessageWriter messageWriter = new MessageWriter(new Output(new ObjectOutputStream(socketOfServer.getOutputStream())), kryo);
+            MessageReader messageReader = new MessageReader(new Input(new ObjectInputStream(socketOfServer.getInputStream())), kryo);
 
         } catch (IOException e) {
             System.out.println(e);
