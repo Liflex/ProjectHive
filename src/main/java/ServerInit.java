@@ -3,8 +3,8 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import handlers.MessageReader;
 import handlers.MessageWriter;
-import messages.imple.SimpleRequest;
-import messages.imple.SimpleResponse;
+import messages.imple.CommandRequestImpl;
+import messages.imple.CommandResponseImpl;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -25,11 +25,9 @@ public class ServerInit extends Thread {
 
     @Override
     public void run() {
-        kryo.register(SimpleResponse.class);
-        kryo.register(SimpleRequest.class);
+        kryo.register(CommandResponseImpl.class);
+        kryo.register(CommandRequestImpl.class);
         ServerSocket listener = null;
-        BufferedReader is;
-        ObjectOutputStream oos;
         Socket socketOfServer = null;
         // Try to open a server socket on port 7071
 

@@ -3,16 +3,16 @@ package service.imple;
 
 
 import dao.imple.BumblebeeDAOImpl;
-import dao.interf.IBumblebeeDAO;
+import dao.interf.BumblebeeDAOInterf;
 import model.Bumblebee;
-import service.interf.IBumblebeeService;
+import service.interf.BumblebeeServiceInterf;
 import util.MySqlConnector;
 
 import java.util.List;
 
-public class BumblebeeServiceImpl implements IBumblebeeService {
+public class BumblebeeServiceImpl implements BumblebeeServiceInterf {
 
-    private final IBumblebeeDAO bumblebeeDAO;
+    private final BumblebeeDAOInterf bumblebeeDAO;
 
     public BumblebeeServiceImpl() {
        bumblebeeDAO = new BumblebeeDAOImpl(MySqlConnector.getSessionFactory());

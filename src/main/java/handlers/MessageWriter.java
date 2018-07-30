@@ -2,7 +2,7 @@ package handlers;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Output;
-import messages.imple.SimpleResponse;
+import messages.imple.CommandResponseImpl;
 
 
 public class MessageWriter extends Thread {
@@ -15,7 +15,7 @@ public class MessageWriter extends Thread {
         this.kryo = kryo;
     }
 
-    public void response (SimpleResponse simpleResponse) {
-        kryo.writeObject(output, simpleResponse);
+    public void response (CommandResponseImpl commandResponseImpl) {
+        kryo.writeObject(output, commandResponseImpl);
     }
 }

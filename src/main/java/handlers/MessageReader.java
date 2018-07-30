@@ -2,7 +2,7 @@ package handlers;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
-import messages.imple.SimpleRequest;
+import messages.imple.CommandRequestImpl;
 
 
 public class MessageReader extends Thread{
@@ -10,7 +10,7 @@ public class MessageReader extends Thread{
     private final Kryo kryo;
     private final Input input;
 
-    private SimpleRequest simpleRequest;
+    private CommandRequestImpl commandRequestImpl;
 
     public MessageReader(Input input, Kryo kryo)  {
        this.input = input;
@@ -23,9 +23,9 @@ public class MessageReader extends Thread{
         try {
             while (true) {
                 if (input.available() != 0) {
-                    SimpleRequest simpleRequest = kryo.readObject(input, SimpleRequest.class);
+                    CommandRequestImpl commandRequestImpl = kryo.readObject(input, CommandRequestImpl.class);
                     System.out.println("Работает");
-                    //new SimpleWorker(simpleRequest).join();
+                    //new SimpleWorker(commandRequestImpl).join();
                     System.out.println("Закончили");
                     input.close();
                 }

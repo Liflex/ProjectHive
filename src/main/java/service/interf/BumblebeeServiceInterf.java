@@ -1,11 +1,11 @@
-package dao.interf;
+package service.interf;
 
 import model.Bumblebee;
 
 import java.util.List;
 
-public interface IBumblebeeDAO {
 
+public interface BumblebeeServiceInterf {
     Bumblebee get(long id);
     List<Bumblebee> getAll();
     void add(Bumblebee t);

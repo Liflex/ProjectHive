@@ -1,6 +1,6 @@
 package dao.imple;
 
-import dao.interf.IBumblebeeDAO;
+import dao.interf.BumblebeeDAOInterf;
 import model.Bumblebee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class BumblebeeDAOImpl implements IBumblebeeDAO {
+public class BumblebeeDAOImpl implements BumblebeeDAOInterf {
 
     private SessionFactory sessionFactory;
 
@@ -23,7 +23,7 @@ public class BumblebeeDAOImpl implements IBumblebeeDAO {
 
     @Override
     public List<Bumblebee> getAll() {
-        List<Bumblebee> users = (List<Bumblebee>)  sessionFactory.openSession().createQuery("From User").list();
+        List<Bumblebee> users = (List<Bumblebee>) sessionFactory.openSession().createQuery("From User").list();
         return users;
     }
 

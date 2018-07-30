@@ -3,7 +3,7 @@ package messages.imple;
 
 import messages.interf.Command;
 
-public class SimpleRequest extends Command {
+public class CommandRequestImpl extends Command {
 
     private String text;
     private Object object;
