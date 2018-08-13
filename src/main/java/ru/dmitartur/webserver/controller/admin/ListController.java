@@ -5,8 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.dmitartur.webserver.model.Role;
-import ru.dmitartur.webserver.model.User;
 import ru.dmitartur.webserver.service.abstraction.UserService;
 
 @Controller

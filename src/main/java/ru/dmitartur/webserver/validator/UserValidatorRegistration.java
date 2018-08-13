@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import ru.dmitartur.webserver.model.User;
 import ru.dmitartur.webserver.service.abstraction.UserService;
 
 @Component
