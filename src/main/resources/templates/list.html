@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin panel</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+<div class="w3-container w3-center w3-margin-bottom w3-padding">
+    <div class="w3-card-4">
+        <div class="w3-container w3-light-blue">
+        </div>
+        <div class="w3-card-4">
+            <div class="container">
+                <form th:action="@{/admin/add}" th:object="${user}" method="POST" class="form-signin">
+                    <h2 class="form-signin-heading">add new user</h2>
+                    <div class="form-group">
+                        <input type="text" th:field="*{username}"/>
+                        <div>
+                            <span style="font-size: small; color: red; " th:if="${#fields.hasErrors('username')}"
+                                  th:errors="*{username}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" th:field="*{password}"/>
+                        <div>
+                            <span style="font-size: small; color: red; " th:if="${#fields.hasErrors('password')}"
+                                  th:errors="*{password}"></span>
+                        </div>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+                </form>
+
+            </div>
+        </div>
+        <ul>
+            <ul class="w3-ul">
+            <th:block th:each="usere : ${Users}">
+                <form th:action="@{/admin/update}" th:object="${usere}" method="POST" class="form-signin">
+                    <h2 class="form-signin-heading"></h2>
+                    <div class="form-group">
+                        <input type="text" id="username" name="username" th:value="*{username}"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="password" name="password" th:value="*{password}"/>
+                    </div>
+                    <input type="hidden" name="id" th:value="*{id}">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">change</button>
+                </form>
+                <form th:action="@{/admin/delete}" th:object="${usere}" method="POST" class="form-signin">
+                    <input type="hidden" id="id" name="id" th:value="*{id}">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">delete</button>
+                </form>
+            </th:block>
+            </ul>
+        </ul>
+    </div>
+</div>
+<!--<div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">-->
+<!--<form method="Get">-->
+<!--<button type="submit" formaction="/logout" class="w3-btn w3-round-large">logout</button>-->
+<!--</form>-->
+<!--</div>-->
+</body>
+</html>
