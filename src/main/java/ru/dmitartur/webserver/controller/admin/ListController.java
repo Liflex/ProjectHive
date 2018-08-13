@@ -25,7 +25,7 @@ public class ListController {
     public String registration(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("Users", userService.getAll());
-        model.addAttribute("roles", Role.values());
+        model.addAttribute("roles", new Role());
         return "list";
     }
 }

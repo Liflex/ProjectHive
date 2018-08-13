@@ -8,16 +8,18 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ru.dmitartur.socketserver.SocketServerInit;
 
 
 @SpringBootApplication
-@ComponentScan(basePackages="ru.dmitartur")
-@EntityScan( basePackages = {"ru.dmitartur.webserver"} )
-@EnableWebSecurity
-@EnableTransactionManagement
+//@ComponentScan(basePackages="ru.dmitartur")
+//@EntityScan( basePackages = {"ru.dmitartur.webserver"} )
+//@EnableWebSecurity
+//@EnableJpaRepositories
+//@EnableTransactionManagement
 public class AppConfig extends SpringBootServletInitializer {
 
     @Override
@@ -26,7 +28,7 @@ public class AppConfig extends SpringBootServletInitializer {
     }
     public static void main(String[] args) {
         SocketServerInit socketServerInit = new SocketServerInit();
-        SpringApplication.run(AppConfig.class, args);
+        SpringApplication.run(new Class<?>[]{AppConfig.class, JpaConfig.class}, args);
         socketServerInit.start();
     }
 }

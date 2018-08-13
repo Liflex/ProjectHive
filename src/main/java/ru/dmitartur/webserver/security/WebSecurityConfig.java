@@ -44,12 +44,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authProvider());
     }
 
-    @Bean
+
     public PasswordEncoder getPasswordEncoder () {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+
     public DaoAuthenticationProvider authProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);

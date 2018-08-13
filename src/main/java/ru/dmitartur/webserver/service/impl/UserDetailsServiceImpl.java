@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import ru.dmitartur.webserver.dao.abstraction.UserDAO;
 
 @Component
@@ -18,6 +19,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userDAO.get(username);
     }

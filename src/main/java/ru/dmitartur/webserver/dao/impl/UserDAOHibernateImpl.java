@@ -17,7 +17,6 @@ public class UserDAOHibernateImpl  implements UserDAO {
 
     private final EntityManagerFactory entityManagerFactory;
 
-    @Autowired
     public UserDAOHibernateImpl(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
     }
@@ -30,8 +29,6 @@ public class UserDAOHibernateImpl  implements UserDAO {
                 .setParameter(1, username)
                 .uniqueResult();
     }
-
-
 
     @Transactional (propagation = Propagation.REQUIRED)
     @Override
